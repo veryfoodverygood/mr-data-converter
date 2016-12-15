@@ -153,7 +153,8 @@ DataConverter.prototype.convert = function() {
     }
 
     CSVParser.resetLog();
-    var parseOutput = CSVParser.parse(this.inputText, this.headersProvided, this.delimiter, this.downcaseHeaders, this.upcaseHeaders);
+    console.log('allstring', this.allString);
+    var parseOutput = CSVParser.parse(this.inputText, this.headersProvided, this.delimiter, this.downcaseHeaders, this.upcaseHeaders, this.decimal, this.allString);
 
     var dataGrid = parseOutput.dataGrid;
     var headerNames = parseOutput.headerNames;

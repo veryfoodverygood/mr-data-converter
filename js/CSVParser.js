@@ -28,7 +28,7 @@ var CSVParser = {
   //---------------------------------------
   //var parseOutput = CSVParser.parse(this.inputText, this.headersProvided, this.delimiter, this.downcaseHeaders, this.upcaseHeaders);
 
-  parse: function (input, headersIncluded, delimiterType, downcaseHeaders, upcaseHeaders, decimalSign) {
+  parse: function (input, headersIncluded, delimiterType, downcaseHeaders, upcaseHeaders, decimalSign, allString) {
 
     var dataArray = [];
 
@@ -55,6 +55,8 @@ var CSVParser = {
     } else if (delimiterType === "tab") {
       columnDelimiter = "\t"
     }
+    
+    allString = parseInt(allString);
 
 
     // kill extra empty lines
@@ -142,15 +144,19 @@ var CSVParser = {
         };
 
       };
-
-      if ((numInts / numRowsToTest) > threshold){
-        if (numFloats > 0) {
-          headerTypes[i] = "float"
-        } else {
-          headerTypes[i] = "int"
-        }
-      } else {
+      
+      if (allString){
         headerTypes[i] = "string"
+      }else{
+        if ((numInts / numRowsToTest) > threshold){
+          if (numFloats > 0) {
+            headerTypes[i] = "float"
+          } else {
+            headerTypes[i] = "int"
+          }
+        } else {
+          headerTypes[i] = "string"
+        }  
       }
     }
 
